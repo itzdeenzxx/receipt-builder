@@ -1,0 +1,170 @@
+{
+  "app": {
+    "title": "Vue Digital Receipt",
+    "description": "Create professional digital receipts for your business quickly and easily"
+  },
+  "nav": {
+    "home": "Home",
+    "editor": "Receipt Editor",
+    "history": "History",
+    "settings": "Settings",
+    "search": "Search"
+  },
+  "actions": {
+    "create": "Create Receipt",
+    "preview": "Preview",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "save": "Save",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "print": "Print",
+    "download": {
+      "title": "Download",
+      "pdf": "Download PDF",
+      "png": "Download Image"
+    },
+    "share": {
+      "title": "Share",
+      "qr": "QR Code"
+    }
+  },
+  "csv": {
+    "title": "Import Items from CSV",
+    "importButton": "Import from CSV",
+    "clickToUpload": "Click to upload or drag and drop",
+    "hasHeader": "File has a header row",
+    "formatHint": "CSV Format Example:",
+    "preview": "Preview",
+    "previewNote": "Showing the first few rows. All existing items will be replaced.",
+    "import": "Import Items",
+    "importing": "Importing...",
+    "importSuccess": "Successfully imported items!",
+    "itemsImported": "items",
+    "invalidFile": "Invalid file type. Please upload a CSV file.",
+    "emptyFile": "The CSV file appears to be empty.",
+    "missingColumns": "CSV must include at least a \"name\" column.",
+    "noValidData": "No valid data found in the CSV file.",
+    "parseError": "Error parsing the CSV file.",
+    "readError": "Failed to read the file.",
+    "importError": "Failed to import items."
+  },
+  "receipt": {
+    "title": "Receipt",
+    "date": "Date",
+    "due": "Due Date",
+    "number": "Receipt Number",
+    "shop": {
+      "name": "Shop Name",
+      "logo": "Shop Logo",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "website": "Website"
+    },
+    "customer": {
+      "name": "Customer",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "items": {
+      "title": "Items",
+      "add": "Add Item",
+      "name": "Item Name",
+      "description": "Description",
+      "quantity": "Quantity",
+      "price": "Price",
+      "amount": "Amount"
+    },
+    "summary": {
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "tax": "Tax",
+      "total": "Total",
+      "payment": "Payment Details"
+    },
+    "footer": {
+      "title": "Footer",
+      "text": "Footer Text",
+      "thankyou": "Show Thank You Message",
+      "thankyou_message": "Thank you for your business!",
+      "poweredBy": "Show Powered By"
+    },
+    "notes": {
+      "title": "Notes",
+      "placeholder": "Add any additional notes or terms of service here"
+    },
+    "signature": {
+      "authorized": "Authorized Signature",
+      "customer": "Customer Signature"
+    },
+    "scan_to_verify": "Scan to verify receipt"
+  },
+  "payment": {
+    "title": "Payment",
+    "status": "Payment Status",
+    "paid": "Paid",
+    "unpaid": "Unpaid",
+    "method": "Payment Method",
+    "cash": "Cash",
+    "card": "Card",
+    "bank": "Bank Transfer",
+    "promptpay": "PromptPay",
+    "other": "Other"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "currency": "Currency",
+    "theme": "Theme",
+    "dark": "Dark Mode",
+    "light": "Light Mode",
+    "system": "System Default"
+  },
+  "themes": {
+    "title": "Theme",
+    "minimal": "Minimal",
+    "modern": "Modern",
+    "thai": "Thai",
+    "elegant": "Elegant",
+    "business": "Business"
+  },
+  "validation": {
+    "required": "{field} is required",
+    "email": "Please enter a valid email address",
+    "phone": "Please enter a valid phone number",
+    "positiveNumber": "{field} must be a positive number",
+    "nonNegativeNumber": "{field} must be zero or greater",
+    "numbersOnly": "{field} must contain only numbers",
+    "range": "{field} must be between {min} and {max}",
+    "noItems": "Please add at least one item to the receipt"
+  },
+  "home": {
+    "features": {
+      "invoices": {
+        "title": "Professional Receipts",
+        "description": "Create professional receipts with your business details and logo for a polished look."
+      },
+      "share": {
+        "title": "Multiple Export Options",
+        "description": "Download as PDF/PNG and share with customers through WhatsApp, Line, email or QR code."
+      },
+      "mobile": {
+        "title": "Mobile-Friendly Design",
+        "description": "Create receipts on the go with our responsive interface that works on all devices."
+      }
+    },
+    "why": {
+      "title": "Why Choose Our Digital Receipt Generator?",
+      "reasons": {
+        "branding": "Customize receipts with your business branding and logo",
+        "themes": "Choose from multiple professional receipt themes",
+        "qr": "Generate QR codes for easy digital sharing",
+        "languages": "Full multilingual support in English and Thai",
+        "offline": "Works completely offline - no account or internet connection required"
+      }
+    }
+  }
+}

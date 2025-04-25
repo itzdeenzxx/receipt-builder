@@ -1,0 +1,131 @@
+{
+  "app": {
+    "title": "Digital Receipt Generator",
+    "description": "Create beautiful and professional digital receipts for your business easily"
+  },
+  "nav": {
+    "home": "Home",
+    "editor": "Receipt Editor",
+    "preview": "Preview Receipt"
+  },
+  "themes": {
+    "title": "Receipt Themes",
+    "minimal": "Minimal Design",
+    "modern": "Modern Style",
+    "thai": "Thai Style Receipt"
+  },
+  "validation": {
+    "required": "The {field} field is required",
+    "nonNegativeNumber": "The {field} must be zero or a positive number",
+    "positiveNumber": "The {field} must be greater than zero",
+    "range": "The {field} must be between {min} and {max}",
+    "noItems": "You need to add at least one item to the receipt",
+    "numbersOnly": "The {field} must contain numbers only",
+    "email": "Please enter a valid email address",
+    "phone": "Please enter a valid phone number",
+    "website": "Please enter a valid website URL",
+    "barcodeFormat": "The current barcode value is not valid for this format"
+  },
+  "receipt": {
+    "shop": {
+      "name": "Business Name",
+      "logo": "Business Logo",
+      "address": "Business Address",
+      "phone": "Contact Phone",
+      "email": "Business Email",
+      "website": "Business Website"
+    },
+    "customer": {
+      "name": "Customer Name",
+      "address": "Customer Address",
+      "phone": "Customer Phone",
+      "email": "Customer Email"
+    },
+    "receipt": {
+      "title": "Receipt Details",
+      "number": "Receipt Number",
+      "date": "Issue Date",
+      "due": "Payment Due Date"
+    },
+    "items": {
+      "title": "Product Items",
+      "name": "Item Name",
+      "description": "Item Description",
+      "quantity": "Quantity",
+      "price": "Unit Price",
+      "amount": "Total Amount",
+      "add": "Add New Item",
+      "remove": "Remove Item"
+    },
+    "summary": {
+      "subtotal": "Subtotal Amount",
+      "discount": "Discount Amount",
+      "tax": "Tax Amount",
+      "total": "Total Amount"
+    },
+    "footer": {
+      "title": "Receipt Footer",
+      "text": "Custom Footer Message",
+      "thankyou": "Show Thank You Message",
+      "poweredBy": "Show 'Powered by' Credit"
+    },
+    "notes": {
+      "title": "Additional Notes",
+      "placeholder": "Add any additional notes, terms and conditions, or payment instructions here..."
+    }
+  },
+  "actions": {
+    "create": "Create New Receipt",
+    "save": "Save Receipt",
+    "download": {
+      "title": "Download Options",
+      "pdf": "Download as PDF Document",
+      "png": "Download as Image File"
+    },
+    "print": "Print Receipt Copy",
+    "share": {
+      "title": "Share Options",
+      "qr": "Generate QR Code",
+      "whatsapp": "Share via WhatsApp",
+      "line": "Share via Line",
+      "email": "Share via Email",
+      "copy": "Copy Receipt Link"
+    },
+    "preview": "Preview Receipt",
+    "back": "Go Back",
+    "next": "Continue to Next Step",
+    "cancel": "Cancel Action"
+  },
+  "settings": {
+    "title": "Application Settings",
+    "language": "Display Language",
+    "currency": "Receipt Currency",
+    "darkMode": "Dark Theme Mode"
+  },
+  "home": {
+    "features": {
+      "invoices": {
+        "title": "Professional Receipts",
+        "description": "Create professional receipts with your business details and logo for a polished look."
+      },
+      "share": {
+        "title": "Multiple Export Options",
+        "description": "Download as PDF/PNG and share with customers through WhatsApp, Line, email or QR code."
+      },
+      "mobile": {
+        "title": "Mobile-Friendly Design",
+        "description": "Create receipts on the go with our responsive interface that works on all devices."
+      }
+    },
+    "why": {
+      "title": "Why Choose Our Digital Receipt Generator?",
+      "reasons": {
+        "branding": "Customize receipts with your business branding and logo",
+        "themes": "Choose from multiple professional receipt themes",
+        "qr": "Generate QR codes for easy digital sharing",
+        "languages": "Full multilingual support in English and Thai",
+        "offline": "Works completely offline - no account or internet connection required"
+      }
+    }
+  }
+}

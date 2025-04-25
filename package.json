@@ -1,0 +1,31 @@
+{
+  "name": "vue-digital-receipt",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.7.16",
+    "@heroicons/vue": "^2.0.18",
+    "html2pdf.js": "^0.10.1",
+    "jsbarcode": "^3.11.6",
+    "pinia": "^2.1.7",
+    "qrcode.vue": "^3.4.1",
+    "uuid": "^11.1.0",
+    "vue": "^3.5.13",
+    "vue-i18n": "^9.5.0",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.3.5",
+    "vite": "^6.2.0"
+  }
+}
