@@ -2,6 +2,11 @@
 
 A modern, responsive application for creating beautiful and professional digital receipts. Built with Vue 3, Pinia, and Tailwind CSS.
 
+
+### Demo https://digital-receipt-two.vercel.app
+
+
+
 ## Features
 
 ### Core Features
