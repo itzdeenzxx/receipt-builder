@@ -29,6 +29,19 @@ const showCsvModal = ref(false)
 const errors = ref({})
 const numericErrors = ref({})
 
+// URL validation
+const validateUrl = (url) => {
+  if (!url) return true // Allow empty URL
+  try {
+    // Check if it has protocol, if not add http:// for validation purposes
+    const urlToCheck = url.match(/^https?:\/\//) ? url : `http://${url}`
+    new URL(urlToCheck)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
 // Validation helper for numeric fields
 const validateNumericField = (value, fieldName, index = null) => {
   // Check if the input contains non-numeric characters (allows for decimal point)
@@ -92,6 +105,58 @@ const validatePhone = (phone) => {
   return re.test(phone)
 }
 
+// Real-time validation handlers
+const handleEmailInput = (value, field) => {
+  const errorKey = field === 'shop' ? 'shopEmail' : 'customerEmail'
+  
+  if (!value) {
+    delete errors.value[errorKey]
+    return
+  }
+  
+  if (!validateEmail(value)) {
+    errors.value[errorKey] = t('validation.email')
+  } else {
+    delete errors.value[errorKey]
+  }
+}
+
+const handlePhoneInput = (value, field) => {
+  const errorKey = field === 'shop' ? 'shopPhone' : 'customerPhone'
+  
+  if (!value) {
+    delete errors.value[errorKey]
+    return
+  }
+  
+  if (!validatePhone(value)) {
+    errors.value[errorKey] = t('validation.phone')
+  } else {
+    delete errors.value[errorKey]
+  }
+}
+
+const handleUrlInput = (value) => {
+  if (!value) {
+    delete errors.value.shopWebsite
+    return
+  }
+  
+  if (!validateUrl(value)) {
+    errors.value.shopWebsite = t('validation.url')
+  } else {
+    delete errors.value.shopWebsite
+  }
+}
+
+const handleRequiredInput = (value, fieldKey, fieldName) => {
+  if (!value || !value.trim()) {
+    errors.value[fieldKey] = t('validation.required', { field: fieldName })
+  } else {
+    delete errors.value[fieldKey]
+  }
+}
+
 // Validation for required fields
 const validateForm = () => {
   const newErrors = {}
@@ -99,6 +164,11 @@ const validateForm = () => {
   // Business validation
   if (!receiptStore.receipt.shop.name.trim()) {
     newErrors.shopName = t('validation.required', { field: t('receipt.shop.name') })
+  }
+  
+  // Customer validation
+  if (!receiptStore.receipt.customer.name.trim()) {
+    newErrors.customerName = t('validation.required', { field: t('receipt.customer.name') })
   }
   
   // Email validation
@@ -109,6 +179,11 @@ const validateForm = () => {
   // Phone validation
   if (receiptStore.receipt.shop.phone && !validatePhone(receiptStore.receipt.shop.phone)) {
     newErrors.shopPhone = t('validation.phone')
+  }
+  
+  // Website validation
+  if (receiptStore.receipt.shop.website && !validateUrl(receiptStore.receipt.shop.website)) {
+    newErrors.shopWebsite = t('validation.url')
   }
   
   // Customer email validation
@@ -182,6 +257,8 @@ const handlePreview = () => {
     // If there are errors, navigate to the tab with errors
     if (errors.value.shopName) {
       activeTab.value = 'business'
+    } else if (errors.value.customerName) {
+      activeTab.value = 'customer'
     } else if (errors.value.items || errors.value.itemErrors) {
       activeTab.value = 'items'
     } else if (errors.value.taxRate || errors.value.discount) {
@@ -305,7 +382,7 @@ const importItemsFromCsv = (items) => {
         <button 
           v-for="tab in [
             { id: 'business', name: t('receipt.shop.name'), error: !!errors.shopName },
-            { id: 'customer', name: t('receipt.customer.name') },
+            { id: 'customer', name: t('receipt.customer.name'), error: !!errors.customerName },
             { id: 'items', name: t('receipt.items.title'), error: !!errors.items || !!errors.itemErrors },
             { id: 'summary', name: t('receipt.summary.subtotal'), error: !!errors.taxRate || !!errors.discount },
             { id: 'footer', name: t('receipt.footer.title') }
@@ -335,6 +412,7 @@ const importItemsFromCsv = (items) => {
           <input 
             id="shop-name" 
             v-model="receiptStore.receipt.shop.name" 
+            @input="handleRequiredInput(receiptStore.receipt.shop.name, 'shopName', t('receipt.shop.name'))"
             type="text" 
             class="form-input mt-1"
             :class="{'error-border border-red-500 focus:ring-red-500 focus:border-red-500': errors.shopName}"
@@ -371,6 +449,7 @@ const importItemsFromCsv = (items) => {
             <input 
               id="shop-phone" 
               v-model="receiptStore.receipt.shop.phone" 
+              @input="handlePhoneInput(receiptStore.receipt.shop.phone, 'shop')"
               type="tel" 
               class="form-input mt-1"
               :class="{'error-border border-red-500 focus:ring-red-500 focus:border-red-500': errors.shopPhone}"
@@ -384,6 +463,7 @@ const importItemsFromCsv = (items) => {
             <input 
               id="shop-email" 
               v-model="receiptStore.receipt.shop.email" 
+              @input="handleEmailInput(receiptStore.receipt.shop.email, 'shop')"
               type="email" 
               class="form-input mt-1"
               :class="{'error-border border-red-500 focus:ring-red-500 focus:border-red-500': errors.shopEmail}"
@@ -398,10 +478,13 @@ const importItemsFromCsv = (items) => {
           <input 
             id="shop-website" 
             v-model="receiptStore.receipt.shop.website" 
+            @input="handleUrlInput(receiptStore.receipt.shop.website)"
             type="text" 
             class="form-input mt-1"
+            :class="{'error-border border-red-500 focus:ring-red-500 focus:border-red-500': errors.shopWebsite}"
             placeholder="e.g., https://www.example.com"
           >
+          <p v-if="errors.shopWebsite" class="mt-1 text-sm text-red-600">{{ t('validation.url') }}</p>
         </div>
       </div>
       
@@ -441,13 +524,18 @@ const importItemsFromCsv = (items) => {
         </div>
         
         <div>
-          <label for="customer-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ t('receipt.customer.name') }}</label>
+          <label for="customer-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            {{ t('receipt.customer.name') }} <span class="text-red-500">*</span>
+          </label>
           <input 
             id="customer-name" 
             v-model="receiptStore.receipt.customer.name" 
+            @input="handleRequiredInput(receiptStore.receipt.customer.name, 'customerName', t('receipt.customer.name'))"
             type="text" 
             class="form-input mt-1"
+            :class="{'error-border border-red-500 focus:ring-red-500 focus:border-red-500': errors.customerName}"
           >
+          <p v-if="errors.customerName" class="mt-1 text-sm text-red-600">{{ errors.customerName }}</p>
         </div>
         
         <div>
@@ -466,6 +554,7 @@ const importItemsFromCsv = (items) => {
             <input 
               id="customer-phone" 
               v-model="receiptStore.receipt.customer.phone" 
+              @input="handlePhoneInput(receiptStore.receipt.customer.phone, 'customer')"
               type="tel" 
               class="form-input mt-1"
               :class="{'error-border border-red-500 focus:ring-red-500 focus:border-red-500': errors.customerPhone}"
@@ -478,7 +567,8 @@ const importItemsFromCsv = (items) => {
             <label for="customer-email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ t('receipt.customer.email') }}</label>
             <input 
               id="customer-email" 
-              v-model="receiptStore.receipt.customer.email" 
+              v-model="receiptStore.receipt.customer.email"
+              @input="handleEmailInput(receiptStore.receipt.customer.email, 'customer')"
               type="email" 
               class="form-input mt-1"
               :class="{'error-border border-red-500 focus:ring-red-500 focus:border-red-500': errors.customerEmail}"
@@ -545,6 +635,7 @@ const importItemsFromCsv = (items) => {
                 <input 
                   :id="`item-name-${index}`" 
                   v-model="item.name" 
+                  @input="handleRequiredInput(item.name, `itemName_${index}`, t('receipt.items.name'))"
                   type="text" 
                   class="form-input mt-1"
                   :class="{'border-red-500 focus:ring-red-500 focus:border-red-500': hasItemError(index, 'name')}"
